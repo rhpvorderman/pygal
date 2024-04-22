@@ -441,7 +441,9 @@ class Graph(PublicApi):
                 legend = self.svg.node(
                     secondary_legends if is_secondary else legends,
                     class_='legend reactive activate-serie',
-                    id="activate-serie-%d" % serie_number
+                    # Since ID must be unique in the entire document, and this
+                    # svg can be embedded, add the graph uuid.
+                    id="activate-serie-%d-%s" % (serie_number, self.uuid)
                 )
                 self.svg.node(
                     legend,

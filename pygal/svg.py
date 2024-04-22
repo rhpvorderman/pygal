@@ -226,18 +226,21 @@ class Svg(object):
 
     def serie(self, serie):
         """Make serie node"""
+        # Add the graph uuid the make the serie unique across multiple graphs.
+        kls = 'series serie-%d-%s color-%d' % (
+            serie.index, self.graph.uuid, serie.index)
         return dict(
             plot=self.node(
                 self.graph.nodes['plot'],
-                class_='series serie-%d color-%d' % (serie.index, serie.index)
+                class_=kls
             ),
             overlay=self.node(
                 self.graph.nodes['overlay'],
-                class_='series serie-%d color-%d' % (serie.index, serie.index)
+                class_=kls
             ),
             text_overlay=self.node(
                 self.graph.nodes['text_overlay'],
-                class_='series serie-%d color-%d' % (serie.index, serie.index)
+                class_=kls
             )
         )
 
